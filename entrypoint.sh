@@ -14,6 +14,7 @@ fi
 
 MIN_PORT=${MIN_PORT:-65435}
 MAX_PORT=${MAX_PORT:-65535}
+VERBOSE=${VERBOSE:-false}
 set -x
 internal_ip="$(ip a | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')"
 external_ip="$(dig +short myip.opendns.com @resolver1.opendns.com)"
@@ -36,6 +37,9 @@ no-stdout-log
 log-file=stdout
 EOT
 )
+if [[ "$VERBOSE" == true ]]; then
+    template+=$'\nverbose'
+fi
 
 set -v
 

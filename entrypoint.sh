@@ -31,7 +31,7 @@ external-ip="$external_ip"
 
 use-auth-secret
 static-auth-secret="$COTURN_SECRET"
-realm="$REALM"
+realm="$COTURN_REALM"
 
 no-stdout-log
 log-file=stdout

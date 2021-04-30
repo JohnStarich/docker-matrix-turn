@@ -1,9 +1,11 @@
 FROM coturn/coturn:4.5.2
+USER 0:0
 RUN apt-get update && \
     apt-get install -y dnsutils && \
     apt-get clean autoclean && \
     rm -rf /var/lib/apt/* /var/lib/cache/* /var/lib/log/*
 
+USER nobody:nogroup
 
 COPY --from=johnstarich/env2config:v0.1.6 /env2config /
 ENV E2C_CONFIGS=coturn
